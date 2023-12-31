@@ -1,23 +1,60 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import Navbar from './Navbar.js';
+import UploadSuccess from './UploadSuccess.js';
+import UploadImage from './UploadImage.js';
+import axios from 'axios';
 
 function App() {
+  const [walletAddress, setWalletAddress] = useState("");
+
+  useEffect(() => {
+    // getWalletAddress();
+    addWalletListener();
+  }, []);
+
+  function addWalletListener() {
+    if (window.ethereum) {
+      window.ethereum.on('accountsChanged', function (accounts) {
+        if (accounts.length > 0) {
+          setWalletAddress(accounts[0]);
+        } else {
+          setWalletAddress("");
+        }
+      });
+    } else {
+      console.log("Please install Metamask");
+    }
+  }
+
+
+  async function getWalletAddress() {
+    if (window.ethereum) {
+      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' }
+      );
+      setWalletAddress(accounts[0]);
+    } else {
+      alert("Please initialize your wallet");
+      console.log("Please install MetaMask.");
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <Router>
+        <Navbar onConnectwallet={getWalletAddress} walletAddress={walletAddress} />
+        {/* <p>{walletAddress}</p> */}
+        {/* <UploadSuccess /> */}
+
+        <Routes>
+          {/* <Route path="/create-nft" exact element={<UploadImage address={walletAddress} />} /> */}
+          <Route path="/" exact element={<UploadImage address={walletAddress} />} />
+          <Route path="/success" element={<UploadSuccess />} />
+
+          {/* <Route path="/nft-detail/:tokenId" element={<NFTDetail />} /> */}
+        </Routes>
+      </Router>
     </div>
   );
 }

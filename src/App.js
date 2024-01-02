@@ -31,10 +31,15 @@ function App() {
 
   async function getWalletAddress() {
     if (window.ethereum) {
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' }
-      );
-      setWalletAddress(accounts[0]);
-    } else {
+      try {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' }
+        );
+        setWalletAddress(accounts[0]);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    else {
       alert("Please initialize your wallet");
       console.log("Please install MetaMask.");
     }

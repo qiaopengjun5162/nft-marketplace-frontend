@@ -75,7 +75,50 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 npx create-react-app react-cbi
 cd react-cbi
 npm start
+npm install react-router-dom   
+npm install axios   
+
+remixd -s /Users/qiaopengjun/Code/sui/nft-market-cbi --remix-ide https://remix.ethereum.org
+npm run start
+npm start
+npx hardhat node
+ipfs daemon
+
+组件
+JSX
+状态
+props
+use effect
 ```
 
 - <https://www.npmjs.com/package/react>
 - <https://react.dev/learn>
+
+### 购买 NFT
+
+### 挖 NFT
+
+### 修改价格
+
+### 下架
+
+### 查询市场所有NFT
+
+market
+
+### 查询个人所有NFT
+
+market.getMyNFTs()
+erc721.balanceOf(address)
+erc721.tokenOfOwnerByIndex(owner, index)
+
+第一步：前端完成和合约的交互，包括读合约的数据和写合约的数据
+第二步：需要的合约和相关接口暴露给前端
+第三步：设计页面、组件、结构，设计组件之间的数据传递、设计组件内部维护的状态
+
+合约 本地 node IPFS 前端 后端
+数据存储状态 数据总量 数据的流向 token 的流向
+跨越 cors
+ipfs cors
+
+- <https://stackoverflow.com/questions/42708251/how-to-do-cross-origin-requests-on-ipfs>

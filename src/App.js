@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
 import Navbar from './Navbar.js';
-import UploadSuccess from './UploadSuccess.js';
 import UploadImage from './UploadImage.js';
-import axios from 'axios';
+import UploadSuccess from './UploadSuccess.js';
+// import axios from 'axios';
 
 function App() {
   const [walletAddress, setWalletAddress] = useState("");
